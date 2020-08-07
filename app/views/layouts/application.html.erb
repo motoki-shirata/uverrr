@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Uver</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <%= 
+    stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+     %>
+    <%= 
+    # javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track': 'reload'%>
+
+  </head>
+
+  <body>
+  <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <%= link_to "Home", root_path, class: "navbar__brand navbar__mainLogo" %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <ul class="navbar-nav ml-auto ">
+          <% if user_signed_in? %>
+              <li><%= link_to "SignOut for Users", destroy_user_session_path, method: :delete, class:"btn btn-primary"%></li>
+              <br>
+              <li><%= link_to "Order!", "#", class: "btn btn-secondary" %></li>
+          <% end %>
+          <% if driver_signed_in? %>
+              <li><%= link_to "SignOut for Drivers", destroy_user_session_path, method: :delete, class:"btn btn-primary"%></li>
+              <li><%= link_to "Recive Order", "#", class: "btn btn-secondary" %></li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+    <%# ==========ここまで追加する========== %>
+
+    <div id="wrapper">
+
+      <% if flash[:notice] %>
+        <div class="alert alert-info">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+      <% if flash[:alert] %>
+        <div class="alert alert-danger">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+
+      <%# ==========ここにcontainerクラスを追加する========== %>
+      <div class="container">
+        <%= yield %>
+      </div>
+      <%# ==========divの閉じタグを追加========== %>
+    </div>
+</html>

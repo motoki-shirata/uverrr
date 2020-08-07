@@ -1,0 +1,16 @@
+<% if user_signed_in? %>
+<% else %>
+    <div class="center jumbotron">
+        <div class="text-center">
+                <h1>Uverrrr</h1>
+        </div>
+        <br>
+        <div class="container text-center">
+                <%= link_to "User Login / Sign up", new_user_session_path, class: 'btn btn-lg btn-primary btn-block' %>
+        </div>
+        <br>
+        <div class="container text-center">
+                <%= link_to "Driver Login / Sign up", new_driver_session_path, class: 'btn btn-lg btn-secondary btn-block' %>
+        </div>        
+    </div>
+<%end%>
